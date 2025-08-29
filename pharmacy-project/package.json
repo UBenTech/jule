@@ -1,0 +1,14 @@
+{
+  "name": "pharmacy-project",
+  "version": "1.0.0",
+  "description": "A pharmacy management system.",
+  "scripts": {
+    "build": "npx tailwindcss -i ./public/assets/css/src/app.css -o ./public/assets/css/tailwind.css",
+    "watch": "npx tailwindcss -i ./public/assets/css/src/app.css -o ./public/assets/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.33",
+    "autoprefixer": "^10.4.17"
+  }
+}
