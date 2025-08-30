@@ -83,7 +83,7 @@ if ($action === 'edit' && $id) {
 }
 
 $page_title = 'Manage Medicines';
-include __DIR__ . '/../templates/header.php';
+include __DIR__ . '/../templates/admin_header.php';
 
 ?>
 
@@ -220,5 +220,5 @@ include __DIR__ . '/../templates/header.php';
 <?php endif; ?>
 
 <?php
-include __DIR__ . '/../templates/footer.php';
+include __DIR__ . '/../templates/admin_footer.php';
 ?>

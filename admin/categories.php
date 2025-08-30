@@ -67,7 +67,7 @@ if ($action === 'edit' && $id) {
 }
 
 $page_title = 'Manage Categories';
-include __DIR__ . '/../templates/header.php';
+include __DIR__ . '/../templates/admin_header.php';
 ?>
 
 <h1>Manage Categories</h1>
@@ -124,5 +124,5 @@ include __DIR__ . '/../templates/header.php';
 
 
 <?php
-include __DIR__ . '/../templates/footer.php';
+include __DIR__ . '/../templates/admin_footer.php';
 ?>
