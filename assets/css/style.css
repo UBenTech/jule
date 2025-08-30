@@ -1,0 +1,285 @@
+/**
+ * Intelligent Pharmacy Management System
+ * Main Stylesheet
+ *
+ * To change the main brand color, edit the --brand-green variable below.
+ * The value should ideally match the BRAND_GREEN constant in config.php.
+ */
+
+:root {
+    --brand-green: #0f9d58; /* This should be kept in sync with BRAND_GREEN in config.php */
+    --light-gray: #f4f4f4;
+    --medium-gray: #ddd;
+    --dark-gray: #333;
+    --danger-red: #dc3545;
+    --warning-orange: #fd7e14;
+    --success-green: #28a745;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- Global Styles & Resets --- */
+body {
+    font-family: var(--font-family-sans-serif);
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+main {
+    flex: 1;
+}
+
+a {
+    color: var(--brand-green);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Header & Navigation --- */
+.navbar {
+    background-color: var(--dark-gray);
+    padding: 1rem;
+    border-bottom: 3px solid var(--brand-green);
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+.navbar .logo {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+.navbar .nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+.navbar .nav-links a:hover {
+    color: var(--brand-green);
+}
+
+/* --- Footer --- */
+footer {
+    background: var(--dark-gray);
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+/* --- Forms --- */
+.form-group {
+    margin-bottom: 1rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+    box-sizing: border-box; /* Important for 100% width */
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+.btn-primary {
+    background-color: var(--brand-green);
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #0c7a43;
+    color: #fff;
+    text-decoration: none;
+}
+.btn-secondary {
+    background-color: var(--dark-gray);
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #555;
+    color: #fff;
+    text-decoration: none;
+}
+.btn-danger {
+    background-color: var(--danger-red);
+    color: #fff;
+}
+
+/* --- Medicine Grid & Cards --- */
+.medicine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+.med-card {
+    border: 1px solid var(--medium-gray);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.med-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.med-card-body {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.med-card-title {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+.med-card-text {
+    font-size: 0.9rem;
+    color: #666;
+    flex-grow: 1;
+    margin-bottom: 15px;
+}
+.med-card-price {
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--brand-green);
+}
+.med-card-footer {
+    padding: 15px;
+    background: var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.badge {
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.badge-expired {
+    background-color: var(--danger-red);
+    color: #fff;
+}
+.badge-low-stock {
+    background-color: var(--warning-orange);
+    color: #fff;
+}
+.badge-in-stock {
+    background-color: var(--success-green);
+    color: #fff;
+}
+
+/* --- Single Medicine Page --- */
+.medicine-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+.medicine-detail-img {
+    width: 100%;
+    border-radius: 5px;
+}
+.medicine-info-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.medicine-info-table td {
+    padding: 10px;
+    border-bottom: 1px solid var(--light-gray);
+}
+.medicine-info-table td:first-child {
+    font-weight: bold;
+    width: 150px;
+}
+
+/* --- Admin Styles --- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.admin-table th, .admin-table td {
+    border: 1px solid var(--medium-gray);
+    padding: 12px;
+    text-align: left;
+}
+.admin-table th {
+    background-color: var(--light-gray);
+}
+.admin-table img {
+    max-width: 80px;
+    height: auto;
+}
+
+
+/* --- Utility Classes --- */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .navbar .nav-links {
+        margin-top: 1rem;
+    }
+    .navbar .nav-links li {
+        margin-left: 0;
+        margin-right: 15px;
+    }
+    .medicine-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}

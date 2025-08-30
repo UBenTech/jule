@@ -1,0 +1,35 @@
+# Intelligent Pharmacy Management System .htaccess
+#
+# This file handles URL rewriting for friendly URLs and provides some basic security.
+# Ensure mod_rewrite is enabled on your Apache server and `AllowOverride All` is set
+# for the project directory in your Apache configuration.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent directory listing
+    Options -Indexes
+
+    # Redirect non-file/directory requests to the router
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Rule for specific friendly URLs
+    RewriteRule ^medicine/([^/]+)/?$ medicine.php?slug=$1 [L,QSA]
+    RewriteRule ^category/([^/]+)/?$ category.php?slug=$1 [L,QSA]
+    RewriteRule ^group/([^/]+)/?$ group.php?group=$1 [L,QSA]
+
+    # Fallback rule for other pages (if needed, though specific pages are better)
+    # For now, let other files be accessed directly. The main index.php will handle the root.
+    # If a request doesn't match any of the above and is not a file/dir, it will result in a 404, which is fine.
+    # The user's request for a "fallback => index.php" is best interpreted as the root URL loading index.php,
+    # which is the default behavior.
+
+</IfModule>
+
+# Basic security headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
