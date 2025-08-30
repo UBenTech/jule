@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO categories (name, slug, description) VALUES (?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$name, $slug, $description]);
-            redirect('categories.php');
+            redirect('/admin/categories.php');
         } elseif ($action === 'edit' && $id) {
             $sql = "UPDATE categories SET name = ?, slug = ?, description = ? WHERE id = ?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$name, $slug, $description, $id]);
-            redirect('categories.php');
+            redirect('/admin/categories.php');
         }
     }
 }
@@ -57,7 +57,7 @@ if ($action === 'delete' && $id) {
         $action = 'list';
     }
 
-    if(empty($error)) redirect('categories.php');
+    if(empty($error)) redirect('/admin/categories.php');
 }
 
 if ($action === 'edit' && $id) {
@@ -80,7 +80,7 @@ include __DIR__ . '/../templates/header.php';
 
 <?php if ($action === 'add' || $action === 'edit'): ?>
     <h2><?php echo $action === 'add' ? 'Add New' : 'Edit'; ?> Category</h2>
-    <form action="categories.php?action=<?php echo $action; ?><?php if($id) echo '&id='.$id; ?>" method="POST" style="max-width: 600px;">
+    <form action="<?php echo BASE_URL; ?>/admin/categories.php?action=<?php echo $action; ?><?php if($id) echo '&id='.$id; ?>" method="POST" style="max-width: 600px;">
         <div class="form-group">
             <label for="name">Category Name *</label>
             <input type="text" name="name" id="name" value="<?php echo esc($category['name'] ?? ''); ?>" required>
@@ -90,13 +90,13 @@ include __DIR__ . '/../templates/header.php';
             <textarea name="description" id="description" rows="3"><?php echo esc($category['description'] ?? ''); ?></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Save Category</button>
-        <a href="categories.php" class="btn btn-secondary">Cancel</a>
+        <a href="<?php echo BASE_URL; ?>/admin/categories.php" class="btn btn-secondary">Cancel</a>
     </form>
 <?php endif; ?>
 
 
 <?php if ($action === 'list'): ?>
-    <a href="categories.php?action=add" class="btn btn-primary mb-1">Add New Category</a>
+    <a href="<?php echo BASE_URL; ?>/admin/categories.php?action=add" class="btn btn-primary mb-1">Add New Category</a>
     <table class="admin-table">
         <thead>
             <tr>
@@ -113,8 +113,8 @@ include __DIR__ . '/../templates/header.php';
                     <td><?php echo esc($row['name']); ?></td>
                     <td><?php echo esc($row['description']); ?></td>
                     <td>
-                        <a href="categories.php?action=edit&id=<?php echo $row['id']; ?>" class="btn btn-secondary btn-sm">Edit</a>
-                        <a href="categories.php?action=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+                        <a href="<?php echo BASE_URL; ?>/admin/categories.php?action=edit&id=<?php echo $row['id']; ?>" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="<?php echo BASE_URL; ?>/admin/categories.php?action=delete&id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
                     </td>
                 </tr>
             <?php endwhile; ?>

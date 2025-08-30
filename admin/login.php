@@ -86,7 +86,7 @@ $page_title = 'Admin Login';
             </div>
         <?php endif; ?>
 
-        <form action="login.php" method="POST">
+        <form action="<?php echo BASE_URL; ?>/admin/login.php" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
@@ -98,7 +98,7 @@ $page_title = 'Admin Login';
             <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
         </form>
         <div class="text-center mt-1">
-             <a href="/">← Back to Site</a>
+             <a href="<?php echo BASE_URL; ?>/">← Back to Site</a>
         </div>
     </div>
 </body>

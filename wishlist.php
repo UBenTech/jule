@@ -14,27 +14,24 @@ require_once 'includes/functions.php';
 
 $pdo = db_connect();
 
-$user_id = $_SESSION['user_id'] ?? null;
-$session_id = session_id();
+// Require user to be logged in to access this page
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['redirect_to'] = '/wishlist.php';
+    redirect('/login.php');
+}
+
+$user_id = $_SESSION['user_id'];
 $wishlist_items = [];
 
 $sql = "
     SELECT m.*
     FROM medicines m
     JOIN wishlists w ON m.id = w.medicine_id
-    WHERE
+    WHERE w.user_id = ?
 ";
 
-if ($user_id) {
-    $sql .= "w.user_id = ?";
-    $params = [$user_id];
-} else {
-    $sql .= "w.session_id = ?";
-    $params = [$session_id];
-}
-
 $stmt = $pdo->prepare($sql);
-$stmt->execute($params);
+$stmt->execute([$user_id]);
 $wishlist_items = $stmt->fetchAll();
 
 $page_title = 'My Wishlist';

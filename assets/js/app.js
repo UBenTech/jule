@@ -55,7 +55,7 @@ async function addToWishlist(medicineId) {
     const responseDiv = document.getElementById(`wishlist-response-${medicineId}`);
 
     try {
-        const response = await fetch('/api.php?action=wishlist_add', {
+        const response = await fetch(`${BASE_URL}/api.php?action=wishlist_add`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ async function submitBooking(formElement) {
     responseDiv.textContent = 'Submitting...';
 
     try {
-        const response = await fetch('/api.php?action=book', {
+        const response = await fetch(`${BASE_URL}/api.php?action=book`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -122,7 +122,7 @@ async function deleteMedicine(medicineId, buttonElement) {
     console.log(`Deleting medicine ${medicineId}...`);
 
     try {
-        const response = await fetch('/api.php?action=med_delete', {
+        const response = await fetch(`${BASE_URL}/api.php?action=med_delete`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ medicine_id: medicineId })

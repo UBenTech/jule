@@ -45,7 +45,7 @@ include 'templates/header.php';
     <h1><?php echo esc($medicine['name']); ?></h1>
     <div class="medicine-detail-grid">
         <div class="medicine-detail-image">
-            <img src="/<?php echo esc($medicine['thumbnail_url']); ?>" alt="<?php echo esc($medicine['name']); ?>" class="medicine-detail-img">
+            <img src="<?php echo BASE_URL; ?>/<?php echo esc($medicine['thumbnail_url']); ?>" alt="<?php echo esc($medicine['name']); ?>" class="medicine-detail-img">
         </div>
         <div class="medicine-detail-info">
             <p><?php echo nl2br(esc($medicine['description'])); ?></p>
@@ -71,11 +71,11 @@ include 'templates/header.php';
                 </tr>
                 <tr>
                     <td>Category</td>
-                    <td><a href="/category/<?php echo esc($medicine['category_slug'] ?? slugify($medicine['category_name'])); ?>"><?php echo esc($medicine['category_name']); ?></a></td>
+                    <td><a href="<?php echo BASE_URL; ?>/category/<?php echo esc($medicine['category_slug'] ?? slugify($medicine['category_name'])); ?>"><?php echo esc($medicine['category_name']); ?></a></td>
                 </tr>
                 <tr>
                     <td>Group</td>
-                    <td><a href="/group/<?php echo esc(urlencode($medicine['group_name'])); ?>"><?php echo esc($medicine['group_name']); ?></a></td>
+                    <td><a href="<?php echo BASE_URL; ?>/group/<?php echo esc(urlencode($medicine['group_name'])); ?>"><?php echo esc($medicine['group_name']); ?></a></td>
                 </tr>
                 <tr>
                     <td>Manufacturer</td>
@@ -96,7 +96,7 @@ include 'templates/header.php';
             </table>
 
             <div class="mt-2">
-                <a href="/book.php?medicine_id=<?php echo esc($medicine['id']); ?>" class="btn btn-primary">Book Now</a>
+                <a href="<?php echo BASE_URL; ?>/book.php?medicine_id=<?php echo esc($medicine['id']); ?>" class="btn btn-primary">Book Now</a>
                 <button class="btn btn-secondary btn-wishlist" data-medicine-id="<?php echo esc($medicine['id']); ?>">Add to Wishlist</button>
             </div>
         </div>

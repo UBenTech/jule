@@ -17,7 +17,7 @@
     <meta name="description" content="A web project for an Intelligent Pharmacy Management system.">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/assets/css/style.css">
 
     <!-- Brand Color Style -->
     <style>

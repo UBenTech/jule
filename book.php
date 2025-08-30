@@ -12,6 +12,13 @@ require_once 'config.php';
 require_once 'includes/db.php';
 require_once 'includes/functions.php';
 
+// Require user to be logged in to access this page
+if (!isset($_SESSION['user_id'])) {
+    // Store the intended destination in the session
+    $_SESSION['redirect_to'] = $_SERVER['REQUEST_URI'];
+    redirect('/login.php');
+}
+
 $pdo = db_connect();
 $medicine_id = $_GET['medicine_id'] ?? null;
 $medicine = null;

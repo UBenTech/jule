@@ -9,29 +9,29 @@
  * 2. Change BRAND_GREEN to your desired hex color for the site's branding.
  */
 
+// --- Base URL Configuration ---
+// The absolute URL to the project root.
+// IMPORTANT: Update this to match your server environment.
+// Example: http://localhost/pharmacy-project
+// Example: https://yourdomain.com/demo/aropharmacy
+define('BASE_URL', '/demo/aropharmacy'); // Using a relative path for flexibility
+
 // --- Database Configuration ---
-// Replace with your database server host (e.g., 'localhost' or '127.0.0.1')
 define('DB_HOST', 'localhost');
-
-// Replace with your database name
-define('DB_NAME', 'pharmacy_db');
-
-// Replace with your database username
-define('DB_USER', 'root');
-
-// Replace with your database password
-define('DB_PASS', '');
+define('DB_NAME', 'u662439561_pharmacy');
+define('DB_USER', 'u662439561_pharmacy1');
+define('DB_PASS', '1a!Wh]4Tx^');
 
 
 // --- Site Configuration ---
 // Brand color used throughout the site's CSS.
-// The user-provided hex code {BRAND_GREEN_HEX} is replaced here.
-// Fallback is #0f9d58 if not provided.
-define('BRAND_GREEN', '#0f9d58');
+define('BRAND_GREEN', 'green');
 
 // --- Session & Error Handling ---
 // Start the session for all pages
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Basic error reporting for development.
 // In a production environment, you might want to set this to 0 and log errors to a file.

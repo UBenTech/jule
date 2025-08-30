@@ -64,12 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO medicines (name, slug, description, category_id, manufacturer_id, price, quantity_in_stock, min_stock, manufacture_date, expiry_date, batch_number, group_name, thumbnail_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$name, $slug, $description, $category_id, $manufacturer_id, $price, $quantity_in_stock, $min_stock, $manufacture_date, $expiry_date, $batch_number, $group_name, $thumbnail_url]);
-            redirect('medicines.php');
+            redirect('/admin/medicines.php');
         } elseif ($action === 'edit' && $id) {
             $sql = "UPDATE medicines SET name=?, slug=?, description=?, category_id=?, manufacturer_id=?, price=?, quantity_in_stock=?, min_stock=?, manufacture_date=?, expiry_date=?, batch_number=?, group_name=?, thumbnail_url=? WHERE id=?";
             $stmt = $pdo->prepare($sql);
             $stmt->execute([$name, $slug, $description, $category_id, $manufacturer_id, $price, $quantity_in_stock, $min_stock, $manufacture_date, $expiry_date, $batch_number, $group_name, $thumbnail_url, $id]);
-            redirect('medicines.php');
+            redirect('/admin/medicines.php');
         }
     }
 }
@@ -79,7 +79,7 @@ if ($action === 'edit' && $id) {
 } elseif ($action === 'delete' && $id) {
     // Note: Deletion is handled by api.php for AJAX, but a fallback can be here.
     // For simplicity, we rely on the AJAX deletion from the list view.
-    redirect('medicines.php');
+    redirect('/admin/medicines.php');
 }
 
 $page_title = 'Manage Medicines';
@@ -90,7 +90,7 @@ include __DIR__ . '/../templates/header.php';
 <h1>Manage Medicines</h1>
 
 <?php if ($action === 'list'): ?>
-    <a href="medicines.php?action=add" class="btn btn-primary mb-1">Add New Medicine</a>
+    <a href="<?php echo BASE_URL; ?>/admin/medicines.php?action=add" class="btn btn-primary mb-1">Add New Medicine</a>
     <table class="admin-table">
         <thead>
             <tr>
@@ -108,14 +108,14 @@ include __DIR__ . '/../templates/header.php';
             $medicines = get_medicines($pdo);
             foreach ($medicines as $med): ?>
                 <tr>
-                    <td><img src="/<?php echo esc($med['thumbnail_url']); ?>" alt="<?php echo esc($med['name']); ?>" width="50"></td>
+                    <td><img src="<?php echo BASE_URL; ?>/<?php echo esc($med['thumbnail_url']); ?>" alt="<?php echo esc($med['name']); ?>" width="50"></td>
                     <td><?php echo esc($med['name']); ?></td>
                     <td><?php echo esc($med['category_name']); ?></td>
                     <td><?php echo format_price($med['price']); ?></td>
                     <td><?php echo esc($med['quantity_in_stock']); ?></td>
                     <td><?php echo format_date($med['expiry_date']); ?></td>
                     <td>
-                        <a href="medicines.php?action=edit&id=<?php echo $med['id']; ?>" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="<?php echo BASE_URL; ?>/admin/medicines.php?action=edit&id=<?php echo $med['id']; ?>" class="btn btn-secondary btn-sm">Edit</a>
                         <button class="btn btn-danger btn-sm btn-delete-medicine" data-medicine-id="<?php echo $med['id']; ?>">Delete</button>
                     </td>
                 </tr>
@@ -132,7 +132,7 @@ include __DIR__ . '/../templates/header.php';
         </div>
     <?php endif; ?>
 
-    <form action="medicines.php?action=<?php echo $action; ?><?php if($id) echo '&id='.$id; ?>" method="POST" enctype="multipart/form-data">
+    <form action="<?php echo BASE_URL; ?>/admin/medicines.php?action=<?php echo $action; ?><?php if($id) echo '&id='.$id; ?>" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Name *</label>
             <input type="text" name="name" id="name" value="<?php echo esc($medicine['name'] ?? ''); ?>" required>
@@ -210,12 +210,12 @@ include __DIR__ . '/../templates/header.php';
             <input type="file" name="thumbnail" id="thumbnail">
             <?php if (isset($medicine['thumbnail_url'])): ?>
                 <input type="hidden" name="existing_thumbnail" value="<?php echo esc($medicine['thumbnail_url']); ?>">
-                <img src="/<?php echo esc($medicine['thumbnail_url']); ?>" width="100" class="mt-1">
+                <img src="<?php echo BASE_URL; ?>/<?php echo esc($medicine['thumbnail_url']); ?>" width="100" class="mt-1">
             <?php endif; ?>
         </div>
 
         <button type="submit" class="btn btn-primary">Save Medicine</button>
-        <a href="medicines.php" class="btn btn-secondary">Cancel</a>
+        <a href="<?php echo BASE_URL; ?>/admin/medicines.php" class="btn btn-secondary">Cancel</a>
     </form>
 <?php endif; ?>
 

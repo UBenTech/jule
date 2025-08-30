@@ -23,12 +23,12 @@ $is_low_stock = $medicine['quantity_in_stock'] > 0 && $medicine['quantity_in_sto
 
 ?>
 <div class="med-card">
-    <a href="/medicine/<?php echo esc($medicine['slug']); ?>">
-        <img src="/<?php echo esc($medicine['thumbnail_url']); ?>" alt="<?php echo esc($medicine['name']); ?>" class="med-card-img">
+    <a href="<?php echo BASE_URL; ?>/medicine/<?php echo esc($medicine['slug']); ?>">
+        <img src="<?php echo BASE_URL; ?>/<?php echo esc($medicine['thumbnail_url']); ?>" alt="<?php echo esc($medicine['name']); ?>" class="med-card-img">
     </a>
     <div class="med-card-body">
         <h3 class="med-card-title">
-            <a href="/medicine/<?php echo esc($medicine['slug']); ?>"><?php echo esc($medicine['name']); ?></a>
+            <a href="<?php echo BASE_URL; ?>/medicine/<?php echo esc($medicine['slug']); ?>"><?php echo esc($medicine['name']); ?></a>
         </h3>
 
         <p class="med-card-text">
@@ -50,7 +50,7 @@ $is_low_stock = $medicine['quantity_in_stock'] > 0 && $medicine['quantity_in_sto
         </div>
     </div>
     <div class="med-card-footer">
-        <a href="/book.php?medicine_id=<?php echo esc($medicine['id']); ?>" class="btn btn-secondary btn-sm">Book Now</a>
+        <a href="<?php echo BASE_URL; ?>/book.php?medicine_id=<?php echo esc($medicine['id']); ?>" class="btn btn-secondary btn-sm">Book Now</a>
         <button class="btn btn-primary btn-sm btn-wishlist" data-medicine-id="<?php echo esc($medicine['id']); ?>">
             Add to Wishlist
         </button>

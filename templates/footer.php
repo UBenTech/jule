@@ -18,7 +18,11 @@
 </footer>
 
 <!-- JavaScript -->
-<script src="/assets/js/app.js"></script>
+<script>
+    // Make PHP constants available to the frontend JS
+    const BASE_URL = '<?php echo rtrim(BASE_URL, '/'); ?>';
+</script>
+<script src="<?php echo BASE_URL; ?>/assets/js/app.js"></script>
 
 </body>
 </html>

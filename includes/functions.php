@@ -210,10 +210,10 @@ function is_admin() {
 /**
  * Redirects to a given URL and exits the script.
  *
- * @param string $url The URL to redirect to.
+ * @param string $url The URL to redirect to. Should be relative to the BASE_URL.
  */
 function redirect($url) {
-    header("Location: " . $url);
+    header("Location: " . BASE_URL . $url);
     exit();
 }
 ?>

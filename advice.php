@@ -63,7 +63,7 @@ include 'templates/header.php';
 <?php endif; ?>
 
 <?php if (!$message): // Hide form on success ?>
-<form action="advice.php" method="POST" style="max-width: 600px;">
+<form action="<?php echo BASE_URL; ?>/advice.php" method="POST" style="max-width: 600px;">
     <div class="form-group">
         <label for="name">Full Name *</label>
         <input type="text" id="name" name="name" required value="<?php echo esc($_POST['name'] ?? ''); ?>">

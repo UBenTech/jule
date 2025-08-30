@@ -25,7 +25,7 @@ include 'templates/header.php';
 
 <h1>Search for Medicines</h1>
 
-<form action="/search.php" method="GET" class="mb-2" style="max-width: 600px;">
+<form action="<?php echo BASE_URL; ?>/search.php" method="GET" class="mb-2" style="max-width: 600px;">
     <div class="form-group">
         <label for="q">Search by name, description, or group:</label>
         <input type="search" id="q" name="q" value="<?php echo esc($search_query); ?>" placeholder="e.g., Paracetamol, fever, group one" required>
