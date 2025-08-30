@@ -99,9 +99,10 @@ function handle_booking($pdo, $input) {
     }
 
     try {
-        $sql = "INSERT INTO bookings (name, phone, email, medicine_id, quantity, booking_type, notes) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO bookings (user_id, name, phone, email, medicine_id, quantity, booking_type, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
+            $_SESSION['user_id'],
             $input['name'],
             $input['phone'],
             $input['email'] ?? null,
